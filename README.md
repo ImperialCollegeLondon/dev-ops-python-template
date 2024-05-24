@@ -10,6 +10,8 @@ This repository demonstrates an opinionated setup for a python command line app.
 - Use pre-commit hooks
 
 Built using a combination of https://github.com/alastairtree/python-cli-devenv-and-ci-sample and https://github.com/ImperialCollegeLondon/poetry_template . Thanks Alastair Crabtree and the computer research team at Imperial!
+# Jupyter Notebooks and ipytest
+Follow the README in notebooks/ to also view a good practice jupyter notebook, including ipytest integration for testing with the notebook environment
 
 ## Developer Quick start
 

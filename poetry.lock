@@ -673,6 +673,22 @@ traitlets = "<6"
 docs = ["myst-nb", "sphinx (>=1.5)", "sphinx-book-theme", "sphinx-copybutton", "sphinx-thebe", "sphinx-togglebutton"]
 
 [[package]]
+name = "ipytest"
+version = "0.14.2"
+description = "Unit tests in IPython notebooks"
+optional = false
+python-versions = "<4,>=3.8"
+files = [
+    {file = "ipytest-0.14.2-py3-none-any.whl", hash = "sha256:236b2d41ad0943310f5a9b7a7d03a627e6abd3ceb481b13fcd03d17292fd69b2"},
+    {file = "ipytest-0.14.2.tar.gz", hash = "sha256:936ab65044e1f9365a8be3f0f1f4b4c086bad44da65844934ea99701413f17d6"},
+]
+
+[package.dependencies]
+ipython = "*"
+packaging = "*"
+pytest = ">=5.4"
+
+[[package]]
 name = "ipython"
 version = "8.18.1"
 description = "IPython: Productive Interactive Computing"
@@ -1963,4 +1979,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "jaraco.test", "more
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "00ef6bb3cd67ad51d1c80ddf56ddb4cccc7d9e4e48954c6a6ddffa411a653c6c"
+content-hash = "3dace3e9ca9a94fffc4960204f7e8b6765f5e1cc3c01731d600c79cb09cb2ed8"

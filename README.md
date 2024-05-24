@@ -139,5 +139,33 @@ You made have to give the dev-env-first-time.sh exec permeisssions with:
  chmod +x dev-env-first-time.sh
 ```
 if you get permission denied
+### SSH keys issues
 
-You may have issues with git keys not being forwarded to the dev container. Make sure ssh-egent is running.
+You may have issues with git keys not being forwarded to the dev container. Make sure ssh-agent is running. I had a lot of trouble with this!
+
+
+In Vscode dev-container documentation they explain how to use SSH agent to pass the shh keys to the container:
+
+[vscode](https://code.visualstudio.com/docs/devcontainers/containers#_using-ssh-keys)
+
+first find they keys files that you have on your system. To do that run the following in your WSL terminal (e.g. Ubuntu) ls ~/.ssh/. By default the shh key file name start with a id_. look for such a file (e.g. id_ed25519).
+
+In the terminal run eval "$(ssh-agent -s)". Then run ssh-add ~/.ssh/id_ed25519 (replace the file name with your key file).
+
+BTW to list the already added keys, run ssh-add -l
+
+The problem is that in linux the ssh-agent doesn't start automatically on start up. So we need to add it to ~/.bash_profile file.
+
+In the terminal run code ~/.bash_profile to open the file in vscode. Then add the following to the file:
+```
+if [ -z "$SSH_AUTH_SOCK" ]; then
+   # Check for a currently running instance of the agent
+   RUNNING_AGENT="`ps -ax | grep 'ssh-agent -s' | grep -v grep | wc -l | tr -d '[:space:]'`"
+   if [ "$RUNNING_AGENT" = "0" ]; then
+        # Launch a new instance of the agent
+        ssh-agent -s &> $HOME/.ssh/ssh-agent
+   fi
+   eval `cat $HOME/.ssh/ssh-agent`
+   ssh-add ~/.ssh/id_ed25519
+fi
+```

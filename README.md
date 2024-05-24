@@ -80,11 +80,19 @@ Code coverage data is generated on build into the folder `htmlcov`
 The `.github/workflows/ci.yml` define a workflow to run on build and test the CLI against multiple versions of python. Build artifacts are generated and a copy of the cli app is available for download for every build
 
 ## Pre-commit hooks
+Pre-commit hooks will stop you from committing files that do not follow flake8 and black, amongst other things. I've added some common hooks. Check them out in .pre-commit-config.yaml. If you try to commit something naughty you will be prompted to fix it. Try it out by trying to commit a notebook without clearning the output.
 
-T
+Test your pre-commit hooks are working with:
 ```
 $  pre-commit run --all-files
 ```
+
+I had some issues getting the pre-commit hooks working. It was fixed with:
+```
+git config --local core.hooksPath .git/hooks
+```
+This tells git where the hooks are explicity.
+
 ## Want to know more?
 
 Check out the [Tour](Tour.md)
